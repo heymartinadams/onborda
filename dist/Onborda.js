@@ -1,9 +1,9 @@
 "use client";
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { useState, useEffect, useRef } from "react";
-import { useOnborda } from "./OnbordaContext";
 import { motion, useInView } from "framer-motion";
-import { useRouter, useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useOnborda } from "./OnbordaContext";
 const Onborda = ({ children, steps, shadowRgb = "0, 0, 0", shadowOpacity = "0.2", cardComponent: CardComponent, }) => {
     const { currentStep, setCurrentStep, isOnbordaVisible } = useOnborda();
     const [elementToScroll, setElementToScroll] = useState(null);
@@ -22,7 +22,7 @@ const Onborda = ({ children, steps, shadowRgb = "0, 0, 0", shadowOpacity = "0.2"
     useEffect(() => {
         if (isOnbordaVisible) {
             console.log("Onborda: Initialising...");
-            if (params.step) {
+            if (params?.step) {
                 setCurrentStep(parseInt(params.step));
             }
             if (steps.length > 0) {
@@ -32,7 +32,7 @@ const Onborda = ({ children, steps, shadowRgb = "0, 0, 0", shadowOpacity = "0.2"
                 }
             }
         }
-    }, [params.step, steps, isOnbordaVisible]);
+    }, [params?.step, steps, isOnbordaVisible]);
     // - -
     // Helper function to get element position
     const getElementPosition = (element) => {
